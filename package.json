@@ -1,0 +1,14 @@
+{
+    "name": "exactrx-prototype",
+    "private": true,
+    "version": "0.1.0",
+    "description": "ExactRx prototype backend foundation",
+    "scripts": {
+        "dev": "node server.js",
+        "build": "node -e \"console.log('Build ready')\"",
+        "start": "node server.js"
+    },
+    "engines": {
+        "node": ">=20"
+    }
+}

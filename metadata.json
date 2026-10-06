@@ -1,0 +1,7 @@
+{
+  "name": "ExactRx — Medication Safety & Understanding",
+  "description": "ExactRx helps patients and pharmacists verify, understand and safely review medicines with Gemini Vision analysis.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

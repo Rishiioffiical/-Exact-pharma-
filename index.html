@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ExactRx — Medication Safety & Understanding</title>
+  <meta name="description"
+    content="ExactRx helps patients and pharmacists verify, understand and safely review medicines with Gemini Vision analysis.">
+  <meta property="og:title" content="ExactRx — Medication Safety & Understanding">
+  <meta property="og:description"
+    content="ExactRx helps patients and pharmacists verify, understand and safely review medicines with Gemini Vision analysis.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300f0ff'/><stop offset='50%' stop-color='%233b82f6'/><stop offset='100%' stop-color='%238b5cf6'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><path d='M30 50h40M50 30v40M38 35l24 30M62 35L38 65' stroke='white' stroke-width='8' stroke-linecap='round'/></svg>">
+
+  <!-- Google Fonts: Space Grotesk, Manrope, Plus Jakarta Sans, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- ================= FIXED LEFT SIDEBAR ================= -->
+    <aside class="sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <a href="#" class="brand-wrapper" data-view-target="home">
+          <!-- Distinctive ExactRx Logo SVG -->
+          <div class="brand-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17L17 7M7 7H17V17" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.8" stroke-opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="brand-info">
+            <span class="brand-title">ExactRx</span>
+            <span class="brand-subtitle">Medication Safety</span>
+          </div>
+        </a>
+        <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" title="Toggle Sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <!-- MAIN -->
+        <div class="nav-section">
+          <div class="nav-section-title">Main</div>
+          <a class="nav-item active" data-view-target="home">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Home</span>
+          </a>
+          <a class="nav-item" data-view-target="search">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-text">Search Medicine</span>
+          </a>
+          <a class="nav-item" data-view-target="chat">
+            <span class="nav-icon">🤖</span>
+            <span class="nav-text">AI Pharmacist</span>
+          </a>
+          <a class="nav-item" data-view-target="verify">
+            <span class="nav-icon">📷</span>
+            <span class="nav-text">Verify Prescription</span>
+          </a>
+          <a class="nav-item" data-view-target="interactions">
+            <span class="nav-icon">🔗</span>
+            <span class="nav-text">Drug Interactions</span>
+          </a>
+          <a class="nav-item" data-view-target="safety">
+            <span class="nav-icon">🛡</span>
+            <span class="nav-text">Safety Checker</span>
+          </a>
+        </div>
+
+        <!-- LEARNING -->
+        <div class="nav-section">
+          <div class="nav-section-title">Learning</div>
+          <a class="nav-item" data-view-target="notes">
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Notes & Study</span>
+          </a>
+          <a class="nav-item" data-view-target="materials">
+            <span class="nav-icon">🎓</span>
+            <span class="nav-text">Study Materials</span>
+          </a>
+          <a class="nav-item" data-view-target="quiz">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">MCQs & Quizzes</span>
+          </a>
+          <a class="nav-item" data-view-target="planner">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Study Planner</span>
+          </a>
+        </div>
+
+        <!-- PHARMACY TOOLS -->
+        <div class="nav-section">
+          <div class="nav-section-title">Pharmacy Tools</div>
+          <a class="nav-item" data-view-target="calc-dose">
+            <span class="nav-icon">🧮</span>
+            <span class="nav-text">Dose Calculator</span>
+          </a>
+          <a class="nav-item" data-view-target="calc-units">
+            <span class="nav-icon">⚖</span>
+            <span class="nav-text">Units Converter</span>
+          </a>
+          <a class="nav-item" data-view-target="calc-halflife">
+            <span class="nav-icon">⏱</span>
+            <span class="nav-text">Half-Life Calculator</span>
+          </a>
+          <a class="nav-item" data-view-target="calc-ivdrip">
+            <span class="nav-icon">💧</span>
+            <span class="nav-text">IV Drip Calculator</span>
+          </a>
+          <a class="nav-item" data-view-target="database">
+            <span class="nav-icon">💊</span>
+            <span class="nav-text">Drug Database</span>
+          </a>
+        </div>
+
+        <!-- PERSONAL -->
+        <div class="nav-section">
+          <div class="nav-section-title">Personal</div>
+          <a class="nav-item" data-view-target="favorites">
+            <span class="nav-icon">❤️</span>
+            <span class="nav-text">Favorites</span>
+          </a>
+          <a class="nav-item" data-view-target="history">
+            <span class="nav-icon">🕘</span>
+            <span class="nav-text">History</span>
+          </a>
+        </div>
+
+        <!-- SYSTEM -->
+        <div class="nav-section">
+          <div class="nav-section-title">System</div>
+          <a class="nav-item" data-view-target="settings">
+            <span class="nav-icon">⚙</span>
+            <span class="nav-text">Settings</span>
+          </a>
+          <a class="nav-item" data-view-target="help">
+            <span class="nav-icon">❓</span>
+            <span class="nav-text">Help & Support</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- USER PROFILE FOOTER -->
+      <div class="sidebar-footer">
+        <div class="profile-card">
+          <div class="profile-avatar">R</div>
+          <div class="profile-info">
+            <div class="profile-name">Rishi</div>
+            <div class="profile-role">B.Pharm 7th Semester</div>
+          </div>
+        </div>
+        <div class="theme-toggle-row">
+          <span>Theme Mode</span>
+          <button id="theme-toggle-btn" style="background: none; border: none; cursor: pointer; font-size: 16px;" title="Switch Theme">
+            <span id="theme-toggle-icon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ================= MAIN WRAPPER ================= -->
+    <div class="main-wrapper">
+      <main class="main-content">
+
+        <!-- TOP BAR -->
+        <div class="top-app-bar">
+          <div class="breadcrumb-nav">
+            <button id="mobile-menu-btn" style="background: none; border: none; color: white; cursor: pointer; display: none; font-size: 20px; margin-right: 8px;">☰</button>
+            <span>ExactRx</span>
+            <span>/</span>
+            <strong id="breadcrumb-current">HOME</strong>
+          </div>
+          <div class="top-bar-actions">
+            <span class="status-badge" id="api-health-badge">
+              <span class="dot"></span> Clinical AI Ready
+            </span>
+            <button class="btn-secondary" style="padding: 6px 14px; font-size: 12.5px;" onclick="window.ExactRx.switchView('chat')">
+              🤖 Quick Consult
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= VIEW: HOME ================= -->
+        <section class="view-container active" id="view-home">
+          <!-- HERO HEADER -->
+          <div class="hero-header">
+            <div>
+              <div class="hero-badge">
+                <span>✦</span> AI-Powered Clinical Pharmacology & Safety
+              </div>
+              <h1 class="hero-title">
+                Medication Safety,<br>
+                <span>Made Understandable</span>
+              </h1>
+              <p class="hero-desc">
+                Search medicines, verify prescriptions with Gemini Vision, check dangerous drug interactions, and master pharmacy coursework — all in one clinical workspace.
+              </p>
+
+              <!-- HERO SEARCH BOX -->
+              <div class="main-search-box">
+                <input type="text" class="main-search-input" id="hero-search-input"
+                  placeholder="Search any medicine (e.g. Metformin, Paracetamol, Amlodipine, Warfarin)...">
+                <button class="main-search-btn" id="hero-search-btn" title="Search">
+                  🔍
+                </button>
+              </div>
+
+              <!-- POPULAR MEDICINE SEARCH PILLS -->
+              <div class="quick-pills">
+                <span style="font-size: 11px; color: var(--text-muted); align-self: center; margin-right: 4px;">Popular:</span>
+                <span class="quick-pill" onclick="window.ExactRx.searchSpecific('Paracetamol')">Paracetamol</span>
+                <span class="quick-pill" onclick="window.ExactRx.searchSpecific('Amoxicillin')">Amoxicillin</span>
+                <span class="quick-pill" onclick="window.ExactRx.searchSpecific('Metformin')">Metformin</span>
+                <span class="quick-pill" onclick="window.ExactRx.searchSpecific('Amlodipine')">Amlodipine</span>
+                <span class="quick-pill" onclick="window.ExactRx.searchSpecific('Omeprazole')">Omeprazole</span>
+                <span class="quick-pill" onclick="window.ExactRx.searchSpecific('Atorvastatin')">Atorvastatin</span>
+              </div>
+            </div>
+
+            <!-- 3D FLOATING CAPSULE ARTWORK -->
+            <div class="capsule-art-container">
+              <div class="floating-capsule">
+                <div class="capsule-ring"></div>
+              </div>
+              <div class="node-chip top-left">🛡 Interaction Guard: Active</div>
+              <div class="node-chip top-right">⚡ Bioavailability: 92%</div>
+              <div class="node-chip bottom-left">💊 Vision Scanning Ready</div>
+              <div class="node-chip bottom-right">🔬 Renal Clearance Checked</div>
+            </div>
+          </div>
+
+          <!-- QUICK ACTIONS GRID -->
+          <div class="quick-actions-grid">
+            <div class="action-card cyan" onclick="window.ExactRx.switchView('search')">
+              <div class="action-icon-circle">🔍</div>
+              <div>
+                <div class="action-title">SEARCH MEDICINE</div>
+                <div class="action-subtitle">Complete monographs & pharmacology</div>
+              </div>
+            </div>
+
+            <div class="action-card magenta" onclick="window.ExactRx.switchView('verify')">
+              <div class="action-icon-circle">📷</div>
+              <div>
+                <div class="action-title">VERIFY PRESCRIPTION</div>
+                <div class="action-subtitle">Gemini Vision AI label verification</div>
+              </div>
+            </div>
+
+            <div class="action-card emerald" onclick="window.ExactRx.switchView('interactions')">
+              <div class="action-icon-circle">🔗</div>
+              <div>
+                <div class="action-title">CHECK INTERACTIONS</div>
+                <div class="action-subtitle">Multi-drug hazard matrix & risk</div>
+              </div>
+            </div>
+
+            <div class="action-card amber" onclick="window.ExactRx.switchView('calc-dose')">
+              <div class="action-icon-circle">🧮</div>
+              <div>
+                <div class="action-title">DOSE CALCULATOR</div>
+                <div class="action-subtitle">Pediatric mg/kg & clinical math</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- POPULAR MEDICINES DIRECTORY PREVIEW -->
+          <div class="section-title-row">
+            <h3 class="section-title">
+              <span>💊</span> Popular Medicines Directory
+            </h3>
+            <a class="section-link" onclick="window.ExactRx.switchView('database')">View Full Database &rarr;</a>
+          </div>
+
+          <div class="medicines-cards-grid" id="home-medicines-grid">
+            <!-- Populated dynamically via app.js -->
+          </div>
+
+          <!-- HOME SPLIT GRID: AI CONSULT PREVIEW + STUDY DECK PREVIEW -->
+          <div class="home-split-grid">
+            <div class="home-card-box">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <h4 style="font-family: var(--font-subheading); font-size: 16px; font-weight: 700; color: white;">
+                  🤖 AI Pharmacist Assistant
+                </h4>
+                <span class="status-badge"><span class="dot"></span> Online</span>
+              </div>
+              <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                Get clinical drug reviews, mechanism breakdowns, pediatric dosing formulas, and counseling guidance instantly.
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px;">
+                <div class="suggested-chip" onclick="window.ExactRx.switchView('chat')">
+                  💬 "What is the mechanism of ACE inhibitors?"
+                </div>
+                <div class="suggested-chip" onclick="window.ExactRx.switchView('chat')">
+                  💬 "How does Metformin affect renal lactic acidosis?"
+                </div>
+                <div class="suggested-chip" onclick="window.ExactRx.switchView('chat')">
+                  💬 "Explain Warfarin and Aspirin interaction risk"
+                </div>
+              </div>
+              <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="window.ExactRx.switchView('chat')">
+                Open Clinical AI Chat &rarr;
+              </button>
+            </div>
+
+            <div class="home-card-box">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <h4 style="font-family: var(--font-subheading); font-size: 16px; font-weight: 700; color: white;">
+                  📝 B.Pharm MCQ Practice & Quizzes
+                </h4>
+                <span style="font-size: 11px; padding: 3px 8px; border-radius: 6px; background: rgba(139, 92, 246, 0.2); color: var(--purple);">10 Questions</span>
+              </div>
+              <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+                Test your pharmacological knowledge, biopharmaceutics kinetics, and dispensing rules with instant feedback and clinical rationales.
+              </p>
+              <div style="background: rgba(13,27,46,0.6); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; margin-bottom: 16px;">
+                <div style="font-size: 11px; color: var(--cyan); font-weight: 700; text-transform: uppercase;">Sample High-Yield Topic</div>
+                <div style="font-size: 13.5px; font-weight: 600; color: white; margin-top: 4px;">Elimination Rate Constant & Half-Life Formulas</div>
+              </div>
+              <button class="btn-secondary" style="width: 100%; justify-content: center;" onclick="window.ExactRx.switchView('quiz')">
+                Start Pharmacy Quiz &rarr;
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW: SEARCH & DATABASE ================= -->
+        <section class="view-container" id="view-search">
+          <div class="view-header">
+            <h2>Drug Information Database</h2>
+            <p>Access structured pharmaceutical monographs, dosage forms, mechanisms, contraindications, and counseling points.</p>
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <input type="text" class="main-search-input" id="search-view-input"
+              placeholder="Search by generic name, brand, indication, or mechanism...">
+          </div>
+
+          <div class="medicines-filter-row">
+            <span class="filter-tab active" data-cat="All">All Drugs</span>
+            <span class="filter-tab" data-cat="Antibiotics">Antibiotics</span>
+            <span class="filter-tab" data-cat="Cardiovascular">Cardiovascular</span>
+            <span class="filter-tab" data-cat="Analgesics">Analgesics</span>
+            <span class="filter-tab" data-cat="GI">Gastrointestinal</span>
+            <span class="filter-tab" data-cat="Endocrine">Endocrine / Diabetes</span>
+          </div>
+
+          <div id="search-results-list">
+            <!-- Rendered by app.js -->
+          </div>
+        </section>
+
+        <!-- View alias for Database -->
+        <section class="view-container" id="view-database">
+          <div class="view-header">
+            <h2>Pharmaceutical Compendium</h2>
+            <p>Official drug monographs curated for pharmacy practice and student examinations.</p>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <button class="btn-primary" onclick="window.ExactRx.switchView('search')">Access Search Directory</button>
+          </div>
+        </section>
+
+        <!-- ================= VIEW: AI CHAT ================= -->
+        <section class="view-container" id="view-chat">
+          <div class="view-header">
+            <h2>AI Clinical Pharmacist</h2>
+            <p>Evidence-based pharmacology support powered by Gemini AI with robust healthcare boundaries.</p>
+          </div>
+
+          <div class="chat-window">
+            <div class="chat-header">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981;"></div>
+                <strong style="font-size: 14px; color: white;">ExactRx Clinical Assistant</strong>
+                <span style="font-size: 11px; color: var(--text-muted);">(USP / BNF / Clinical Guidelines)</span>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-secondary" id="chat-copy-btn" style="padding: 5px 10px; font-size: 11.5px;">📋 Copy</button>
+                <button class="btn-secondary" id="chat-clear-btn" style="padding: 5px 10px; font-size: 11.5px;">🗑 Clear</button>
+              </div>
+            </div>
+
+            <!-- CHAT TRANSCRIPT AREA -->
+            <div class="chat-messages-area" id="chat-messages-container">
+              <!-- Rendered by app.js -->
+            </div>
+
+            <div id="chat-status-indicator" style="display: none; padding: 6px 20px; font-size: 11px; color: var(--cyan); background: rgba(0,240,255,0.06);">
+              Analyzing...
+            </div>
+
+            <!-- SUGGESTED PROMPT CHIPS -->
+            <div class="chat-suggested-prompts">
+              <span class="suggested-chip" data-prompt="Explain the difference between Metformin and Glipizide">Metformin vs Glipizide</span>
+              <span class="suggested-chip" data-prompt="What are the adverse effects of Fluoroquinolones like Ciprofloxacin?">Ciprofloxacin Black Box</span>
+              <span class="suggested-chip" data-prompt="Calculate pediatric Amoxicillin dose for 16 kg child with otitis media">Pediatric Amoxicillin 16kg</span>
+              <span class="suggested-chip" data-prompt="Why does Lisinopril cause a dry cough?">Lisinopril Bradykinin Cough</span>
+              <span class="suggested-chip" data-prompt="Explain the mechanism of Warfarin and how INR is monitored">Warfarin & INR Monitoring</span>
+            </div>
+
+            <!-- RESPONSE ACTION BUTTONS BAR -->
+            <div class="chat-response-toolbar">
+              <span style="font-size: 11px; color: var(--text-muted); margin-right: 6px;">Response Actions:</span>
+              <button class="response-btn" data-response-action="explain-simple">
+                💡 Explain to Patient in Simple Terms
+              </button>
+              <button class="response-btn" data-response-action="clinical-notes">
+                📋 Pharmacist Notes & Counseling
+              </button>
+              <button class="response-btn" data-response-action="check-interactions">
+                ⚠️ Check Drug Interactions
+              </button>
+            </div>
+
+            <!-- INPUT BAR -->
+            <form class="chat-input-bar" id="chat-form">
+              <input type="text" class="chat-input-field" id="chat-input-text"
+                placeholder="Ask about mechanisms, dosing, interactions, or exam questions..." required autocomplete="off">
+              <button type="submit" class="btn-primary" style="padding: 10px 20px;">
+                Send &rarr;
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================= VIEW: VERIFY PRESCRIPTION ================= -->
+        <section class="view-container" id="view-verify">
+          <div class="view-header">
+            <h2>Prescription & Packaging Verification</h2>
+            <p>Upload a prescription, label, or packaging image to extract drug candidates, verify dosage strengths, and identify safety discrepancies.</p>
+          </div>
+
+          <div class="verification-grid">
+            <div>
+              <!-- DROPZONE -->
+              <div class="upload-dropzone" id="verification-dropzone">
+                <div style="font-size: 40px; margin-bottom: 12px;">📷</div>
+                <h4 style="font-size: 17px; font-weight: 700; color: white;">Drag & Drop Prescription Image</h4>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">Supports PNG, JPG, or WEBP up to 15MB</p>
+                <button class="btn-primary" style="margin-top: 16px; pointer-events: none;">
+                  Select Image File
+                </button>
+                <input type="file" id="prescription-file-input" accept="image/png,image/jpeg,image/webp" style="display: none;">
+              </div>
+
+              <!-- ONE-CLICK SAMPLE PRESCRIPTIONS -->
+              <div style="margin-top: 20px; background: rgba(13,27,46,0.6); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 18px;">
+                <div style="font-size: 12px; font-weight: 700; color: var(--cyan); text-transform: uppercase;">
+                  Or Test with Sample Prescription Records
+                </div>
+                <div class="sample-pills-row" id="sample-prescriptions-box">
+                  <!-- Populated dynamically via app.js -->
+                </div>
+              </div>
+            </div>
+
+            <!-- RESULTS REPORT CONTAINER -->
+            <div id="verification-results-container">
+              <div style="background: rgba(13,27,46,0.4); border: 1px dashed var(--border-subtle); border-radius: 20px; padding: 48px 24px; text-align: center;">
+                <div style="font-size: 32px; opacity: 0.6;">🔍</div>
+                <h4 style="font-size: 16px; color: var(--text-secondary); margin-top: 12px;">Awaiting Prescription Image</h4>
+                <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 6px;">Upload a file or choose one of the sample presets to run the AI clinical verification analysis.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW: DRUG INTERACTIONS ================= -->
+        <section class="view-container" id="view-interactions">
+          <div class="view-header">
+            <h2>Drug Interactions Hazard Checker</h2>
+            <p>Evaluate pharmacokinetic (CYP450 metabolism, transport) and pharmacodynamic interactions between two or more drugs.</p>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 24px; margin-bottom: 24px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 16px; align-items: flex-end;">
+              <div>
+                <label style="display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Primary Medication</label>
+                <select id="interaction-drug-1" style="width: 100%; padding: 12px; border-radius: 12px; background: rgba(6,15,27,0.8); border: 1px solid var(--border-subtle); color: white;"></select>
+              </div>
+              <div>
+                <label style="display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Co-prescribed Medication</label>
+                <select id="interaction-drug-2" style="width: 100%; padding: 12px; border-radius: 12px; background: rgba(6,15,27,0.8); border: 1px solid var(--border-subtle); color: white;"></select>
+              </div>
+              <button class="btn-primary" id="check-interaction-btn" style="height: 46px;">
+                Check Interaction &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div id="interaction-result-container">
+            <div style="background: rgba(13,27,46,0.4); border: 1px dashed var(--border-subtle); border-radius: 16px; padding: 36px; text-align: center; color: var(--text-muted);">
+              Select two medications and press "Check Interaction" to view clinical analysis.
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW: SAFETY CHECKER ================= -->
+        <section class="view-container" id="view-safety">
+          <div class="view-header">
+            <h2>Patient Safety & Risk Profile Checker</h2>
+            <p>Personalize safety audits based on patient age, renal impairment (CrCl), pregnancy status, and documented allergies.</p>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 24px; margin-bottom: 24px;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+              <div>
+                <label style="display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Medication to Audit</label>
+                <select id="safety-drug-select" style="width: 100%; padding: 10px; border-radius: 10px; background: rgba(6,15,27,0.8); border: 1px solid var(--border-subtle); color: white;"></select>
+              </div>
+              <div>
+                <label style="display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Patient Age Group</label>
+                <select id="safety-age-select" style="width: 100%; padding: 10px; border-radius: 10px; background: rgba(6,15,27,0.8); border: 1px solid var(--border-subtle); color: white;">
+                  <option value="adult">Adult (18–64 years)</option>
+                  <option value="elderly">Geriatric (>= 65 years)</option>
+                  <option value="pediatric">Pediatric (Viral / Childhood)</option>
+                </select>
+              </div>
+              <div>
+                <label style="display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Renal Clearance (eGFR / CrCl)</label>
+                <select id="safety-renal-select" style="width: 100%; padding: 10px; border-radius: 10px; background: rgba(6,15,27,0.8); border: 1px solid var(--border-subtle); color: white;">
+                  <option value="normal">Normal (> 60 mL/min)</option>
+                  <option value="moderate">Moderate Impairment (30–59 mL/min)</option>
+                  <option value="severe">Severe Impairment (< 30 mL/min)</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 16px; align-items: flex-end;">
+              <div>
+                <label style="display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Pregnancy Status</label>
+                <select id="safety-pregnancy-select" style="width: 100%; padding: 10px; border-radius: 10px; background: rgba(6,15,27,0.8); border: 1px solid var(--border-subtle); color: white;">
+                  <option value="no">Not Pregnant</option>
+                  <option value="yes">Pregnant (Any Trimester)</option>
+                </select>
+              </div>
+              <div>
+                <label style="display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Documented Allergy</label>
+                <select id="safety-allergy-select" style="width: 100%; padding: 10px; border-radius: 10px; background: rgba(6,15,27,0.8); border: 1px solid var(--border-subtle); color: white;">
+                  <option value="none">No Known Drug Allergies (NKDA)</option>
+                  <option value="penicillin">Penicillin / Beta-Lactam Allergy</option>
+                  <option value="sulfa">Sulfa Drug Allergy</option>
+                  <option value="nsaid">Aspirin / NSAID Triad Allergy</option>
+                </select>
+              </div>
+              <button class="btn-primary" id="run-safety-audit-btn" style="height: 42px;">
+                Audit Safety Profile &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div id="safety-audit-results">
+            <!-- Rendered by app.js -->
+          </div>
+        </section>
+
+        <!-- ================= VIEW: CALCULATORS ================= -->
+        <section class="view-container" id="view-calc-dose">
+          <div class="view-header">
+            <h2>Pediatric & Clinical Dose Calculator</h2>
+            <p>Compute weight-based single and daily dosages, divided frequency schedules, and liquid suspension volume in mL.</p>
+          </div>
+
+          <div class="calc-card-grid">
+            <div class="calculator-card">
+              <div class="calc-title">🧮 Pediatric Dose (mg/kg/day)</div>
+              <div class="calc-subtitle">Accurate mg and liquid suspension mL calculation</div>
+
+              <div class="calc-form-group">
+                <label>Patient Weight (kg)</label>
+                <input type="number" id="dose-weight" value="14" step="0.5">
+              </div>
+              <div class="calc-form-group">
+                <label>Prescribed Dosage (mg/kg/day)</label>
+                <input type="number" id="dose-mgkg" value="40" step="5">
+              </div>
+              <div class="calc-form-group">
+                <label>Dosing Frequency</label>
+                <select id="dose-frequency">
+                  <option value="1">Once Daily (QD)</option>
+                  <option value="2">Twice Daily (BID / q12h)</option>
+                  <option value="3" selected>Three Times Daily (TID / q8h)</option>
+                  <option value="4">Four Times Daily (QID / q6h)</option>
+                </select>
+              </div>
+              <div class="calc-form-group">
+                <label>Suspension Strength (e.g. 250 mg / 5 mL)</label>
+                <input type="number" id="dose-concentration" value="250" placeholder="mg per 5 mL">
+              </div>
+
+              <button class="btn-primary" id="calc-dose-btn" style="width: 100%; justify-content: center; margin-top: 10px;">
+                Calculate Dose
+              </button>
+            </div>
+
+            <div class="calculator-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="calc-title">📊 Calculation Result</div>
+                <div class="calc-subtitle">Pharmacist dispensing summary</div>
+
+                <div class="calc-result-box">
+                  <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted);">Calculated Dose</div>
+                  <div class="calc-result-val" id="calc-dose-result">186.7 mg / dose</div>
+                  <div class="calc-formula-note" id="calc-dose-note">
+                    Total Daily: <strong>560 mg/day</strong> divided TID.<br>
+                    Suspension Volume: <strong>3.7 mL</strong> per dose.
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: rgba(0,0,0,0.25); border-radius: 12px; padding: 14px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                <strong>Clinical Formula:</strong><br>
+                Total Daily Dose = Weight (kg) &times; Dose (mg/kg/day)<br>
+                Single Dose = Total Daily Dose &divide; Dosing Frequency<br>
+                Liquid Volume = (Single Dose &divide; Concentration) &times; 5 mL
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- UNITS CONVERTER -->
+        <section class="view-container" id="view-calc-units">
+          <div class="view-header">
+            <h2>Clinical Units Converter</h2>
+            <p>Convert pharmaceutical metrics across mass, volume, and clinical concentrations.</p>
+          </div>
+
+          <div class="calculator-card" style="max-width: 600px; margin: 0 auto;">
+            <div class="calc-title">⚖ Pharmaceutical Unit Conversion</div>
+            <div class="calc-form-group">
+              <label>Input Value</label>
+              <input type="number" id="units-value" value="250">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="calc-form-group">
+                <label>From Unit</label>
+                <select id="units-from">
+                  <option value="mcg">Micrograms (mcg / &mu;g)</option>
+                  <option value="mg" selected>Milligrams (mg)</option>
+                  <option value="g">Grams (g)</option>
+                  <option value="kg">Kilograms (kg)</option>
+                </select>
+              </div>
+              <div class="calc-form-group">
+                <label>To Unit</label>
+                <select id="units-to">
+                  <option value="mcg" selected>Micrograms (mcg / &mu;g)</option>
+                  <option value="mg">Milligrams (mg)</option>
+                  <option value="g">Grams (g)</option>
+                  <option value="kg">Kilograms (kg)</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn-primary" id="calc-units-btn" style="width: 100%; justify-content: center;">
+              Convert Units
+            </button>
+
+            <div class="calc-result-box" style="margin-top: 18px; text-align: center;">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted);">Converted Output</div>
+              <div class="calc-result-val" id="calc-units-result">250000 mcg</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- HALF LIFE CALCULATOR -->
+        <section class="view-container" id="view-calc-halflife">
+          <div class="view-header">
+            <h2>Half-Life & Pharmacokinetics Calculator</h2>
+            <p>Calculate elimination rate constant (k), time to 95% steady-state, and remaining plasma concentration.</p>
+          </div>
+
+          <div class="calculator-card" style="max-width: 650px; margin: 0 auto;">
+            <div class="calc-title">⏱ Elimination Kinetics (First-Order)</div>
+            <div class="calc-form-group">
+              <label>Drug Elimination Half-Life (t1/2 in hours)</label>
+              <input type="number" id="halflife-thalf" value="6" step="0.5">
+            </div>
+            <div class="calc-form-group">
+              <label>Initial Concentration / Dose (Optional, e.g. 100 mg/L)</label>
+              <input type="number" id="halflife-initial" value="100">
+            </div>
+            <div class="calc-form-group">
+              <label>Hours Elapsed (To calculate remaining concentration)</label>
+              <input type="number" id="halflife-hours" value="12">
+            </div>
+
+            <button class="btn-primary" id="calc-halflife-btn" style="width: 100%; justify-content: center;">
+              Compute Kinetic Parameters
+            </button>
+
+            <div class="calc-result-box" style="margin-top: 18px;">
+              <div class="calc-result-val" id="calc-halflife-result">k = 0.116 hr⁻¹</div>
+              <div class="calc-formula-note" id="calc-halflife-note">
+                &bull; Time to 95% Elimination: <strong>25.9 hours</strong><br>
+                &bull; Time to Steady State: <strong>30.0 hours</strong><br>
+                &bull; Remaining concentration after 12h: <strong>25.00 (25.0%)</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- IV DRIP CALCULATOR -->
+        <section class="view-container" id="view-calc-ivdrip">
+          <div class="view-header">
+            <h2>IV Drip Flow Rate Calculator</h2>
+            <p>Calculate infusion rate in mL/hour and drops per minute (gtt/min) for standard gravity administration sets.</p>
+          </div>
+
+          <div class="calculator-card" style="max-width: 650px; margin: 0 auto;">
+            <div class="calc-title">💧 Intravenous Infusion Parameters</div>
+            <div class="calc-form-group">
+              <label>Total Infusion Volume (mL)</label>
+              <input type="number" id="drip-volume" value="1000">
+            </div>
+            <div class="calc-form-group">
+              <label>Infusion Duration (Hours)</label>
+              <input type="number" id="drip-hours" value="8" step="0.5">
+            </div>
+            <div class="calc-form-group">
+              <label>Drop Factor (gtt/mL)</label>
+              <select id="drip-factor">
+                <option value="10">10 gtt/mL (Blood / Regular Macrodrip)</option>
+                <option value="15" selected>15 gtt/mL (Standard Macrodrip)</option>
+                <option value="20">20 gtt/mL (Standard)</option>
+                <option value="60">60 gtt/mL (Microdrip / Pediatric)</option>
+              </select>
+            </div>
+
+            <button class="btn-primary" id="calc-ivdrip-btn" style="width: 100%; justify-content: center;">
+              Calculate Drip Rate
+            </button>
+
+            <div class="calc-result-box" style="margin-top: 18px; text-align: center;">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted);">Required Flow Rate</div>
+              <div class="calc-result-val" id="calc-ivdrip-result">31 gtt / min</div>
+              <div class="calc-formula-note" id="calc-ivdrip-note">
+                Flow Rate: <strong>125.0 mL/hr</strong> &bull; Total Time: 8 hours (480 mins).
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW: NOTES & STUDY ================= -->
+        <section class="view-container" id="view-notes">
+          <div class="view-header">
+            <h2>B.Pharm Study Notes & Core Pharmacotherapy</h2>
+            <p>High-yield clinical summaries structured for pharmacy school semesters and licensure preparation.</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;">
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 18px; padding: 22px;">
+              <div style="font-size: 11px; font-weight: 700; color: var(--cyan); text-transform: uppercase;">Pharmacology</div>
+              <h4 style="font-size: 16px; font-weight: 700; color: white; margin-top: 6px;">Autonomic Nervous System (ANS)</h4>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5;">
+                Cholinergic agonists, antimuscarinics, adrenergic receptors (&alpha;1, &alpha;2, &beta;1, &beta;2, &beta;3) and sympathomimetic agents.
+              </p>
+              <button class="btn-secondary" style="margin-top: 14px; font-size: 12px; padding: 6px 12px;" onclick="window.ExactRx.switchView('chat')">
+                Ask AI to Quiz You
+              </button>
+            </div>
+
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 18px; padding: 22px;">
+              <div style="font-size: 11px; font-weight: 700; color: var(--purple); text-transform: uppercase;">Biopharmaceutics</div>
+              <h4 style="font-size: 16px; font-weight: 700; color: white; margin-top: 6px;">Pharmacokinetics & Compartment Models</h4>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5;">
+                One-compartment vs two-compartment kinetics, volume of distribution (Vd), clearance (Cl), and AUC calculation methods.
+              </p>
+              <button class="btn-secondary" style="margin-top: 14px; font-size: 12px; padding: 6px 12px;" onclick="window.ExactRx.switchView('calc-halflife')">
+                Open PK Calculator
+              </button>
+            </div>
+
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 18px; padding: 22px;">
+              <div style="font-size: 11px; font-weight: 700; color: #10b981; text-transform: uppercase;">Clinical Pharmacy</div>
+              <h4 style="font-size: 16px; font-weight: 700; color: white; margin-top: 6px;">Cardiovascular Pharmacotherapy</h4>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5;">
+                AHA/ACC hypertension guidelines, ACE inhibitors, ARBs, CCBs, beta blockers, statins, and heart failure protocols (GDMT).
+              </p>
+              <button class="btn-secondary" style="margin-top: 14px; font-size: 12px; padding: 6px 12px;" onclick="window.ExactRx.switchView('search')">
+                View Drugs
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- STUDY MATERIALS -->
+        <section class="view-container" id="view-materials">
+          <div class="view-header">
+            <h2>Pharmacy Reference Tables & Charts</h2>
+            <p>Quick reference charts for clinical rotations and laboratory courses.</p>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 18px; padding: 24px;">
+            <h4 style="font-size: 17px; font-weight: 700; color: white; margin-bottom: 12px;">High-Yield Clinical Antidotes Table</h4>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+                <thead>
+                  <tr style="border-bottom: 1px solid var(--border-subtle); color: var(--cyan);">
+                    <th style="padding: 10px 12px;">Toxic Agent / Drug</th>
+                    <th style="padding: 10px 12px;">Specific Antidote</th>
+                    <th style="padding: 10px 12px;">Mechanism of Reversal</th>
+                  </tr>
+                </thead>
+                <tbody style="color: var(--text-secondary);">
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 10px 12px; font-weight: 600; color: white;">Acetaminophen (Paracetamol)</td>
+                    <td style="padding: 10px 12px; color: #10b981; font-weight: 600;">N-Acetylcysteine (NAC)</td>
+                    <td style="padding: 10px 12px;">Restores hepatic glutathione to neutralize toxic NAPQI.</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 10px 12px; font-weight: 600; color: white;">Opioids (Morphine, Fentanyl)</td>
+                    <td style="padding: 10px 12px; color: #10b981; font-weight: 600;">Naloxone (Narcan)</td>
+                    <td style="padding: 10px 12px;">Pure competitive opioid mu-receptor antagonist.</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 10px 12px; font-weight: 600; color: white;">Benzodiazepines (Diazepam)</td>
+                    <td style="padding: 10px 12px; color: #10b981; font-weight: 600;">Flumazenil</td>
+                    <td style="padding: 10px 12px;">Competitive GABA-A receptor antagonist.</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 10px 12px; font-weight: 600; color: white;">Warfarin</td>
+                    <td style="padding: 10px 12px; color: #10b981; font-weight: 600;">Phytonadione (Vitamin K1) / Kcentra</td>
+                    <td style="padding: 10px 12px;">Overcomes VKORC1 inhibition; provides active clotting factors.</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 10px 12px; font-weight: 600; color: white;">Heparin (Unfractionated)</td>
+                    <td style="padding: 10px 12px; color: #10b981; font-weight: 600;">Protamine Sulfate</td>
+                    <td style="padding: 10px 12px;">Positively charged protein binds and neutralizes acidic heparin.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW: QUIZZES ================= -->
+        <section class="view-container" id="view-quiz">
+          <div class="view-header" style="text-align: center;">
+            <h2>Interactive Clinical Pharmacy Quiz</h2>
+            <p>10 board-level MCQs covering pharmacology, clinical dispensing, and biopharmaceutics.</p>
+          </div>
+
+          <div class="quiz-box">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 14px;">
+              <span id="quiz-progress-label" style="font-size: 13px; color: var(--cyan); font-weight: 600;">Question 1 of 10</span>
+              <span id="quiz-score-badge" style="font-size: 13px; font-weight: 700; color: #10b981;">Score: 0</span>
+            </div>
+
+            <div id="quiz-question-box">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW: STUDY PLANNER ================= -->
+        <section class="view-container" id="view-planner">
+          <div class="view-header">
+            <h2>B.Pharm 7th Semester Study Planner</h2>
+            <p>Track syllabus milestones across NDDS, Pharmacy Practice, and Industrial Pharmacy.</p>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 24px; max-width: 800px; margin: 0 auto;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+              <div>
+                <h4 style="font-size: 18px; font-weight: 700; color: white;">Weekly Syllabus Tracker</h4>
+                <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">Coursework progress for Rishi (B.Pharm 7th Sem)</p>
+              </div>
+              <span class="status-badge"><span class="dot"></span> On Track</span>
+            </div>
+
+            <div class="task-list" id="daily-tasks-list" style="gap: 12px;">
+              <!-- Rendered by app.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW: FAVORITES & HISTORY ================= -->
+        <section class="view-container" id="view-favorites">
+          <div class="view-header">
+            <h2>Saved Favorite Medicines</h2>
+            <p>Your pinned monographs for rapid clinical reference.</p>
+          </div>
+          <div id="favorites-list-container">
+            <!-- Rendered by app.js -->
+          </div>
+        </section>
+
+        <section class="view-container" id="view-history">
+          <div class="view-header">
+            <h2>Search & Review History</h2>
+            <p>Recent searches and verified prescription inquiries.</p>
+          </div>
+          <div id="history-list-container">
+            <!-- Rendered by app.js -->
+          </div>
+        </section>
+
+        <!-- ================= VIEW: SETTINGS & HELP ================= -->
+        <section class="view-container" id="view-settings">
+          <div class="view-header">
+            <h2>System Preferences & Settings</h2>
+            <p>Adjust user profile, measurement conventions, and clinical citation standards.</p>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 24px; max-width: 600px;">
+            <div style="margin-bottom: 18px;">
+              <label style="display: block; font-size: 12.5px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Student Name</label>
+              <input type="text" value="Rishi" class="calc-form-group" style="width: 100%; padding: 10px; border-radius: 10px; background: rgba(6,15,27,0.8); border: 1px solid var(--border-subtle); color: white;">
+            </div>
+            <div style="margin-bottom: 18px;">
+              <label style="display: block; font-size: 12.5px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Academic Semester</label>
+              <input type="text" value="B.Pharm 7th Semester" style="width: 100%; padding: 10px; border-radius: 10px; background: rgba(6,15,27,0.8); border: 1px solid var(--border-subtle); color: white;">
+            </div>
+            <div style="margin-bottom: 18px;">
+              <label style="display: block; font-size: 12.5px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Clinical Compendia Standard</label>
+              <select style="width: 100%; padding: 10px; border-radius: 10px; background: rgba(6,15,27,0.8); border: 1px solid var(--border-subtle); color: white;">
+                <option selected>United States Pharmacopeia (USP) & FDA</option>
+                <option>British Pharmacopoeia (BP) & BNF</option>
+                <option>Indian Pharmacopoeia (IP)</option>
+              </select>
+            </div>
+            <button class="btn-primary" onclick="alert('Settings saved successfully.')">Save Preferences</button>
+          </div>
+        </section>
+
+        <section class="view-container" id="view-help">
+          <div class="view-header">
+            <h2>Help & Clinical Support</h2>
+            <p>Documentation on vision verification, safety scoring, and contact information.</p>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 24px;">
+            <h4 style="font-size: 16px; font-weight: 700; color: white;">About ExactRx</h4>
+            <p style="font-size: 13.5px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+              ExactRx is engineered as an advanced medication safety, prescription verification, and pharmacy learning platform. Combining multimodal AI vision with structured clinical pharmacology datasets, ExactRx bridges the gap between patient safety and academic pharmaceutical training.
+            </p>
+            <div style="margin-top: 18px; font-size: 12px; color: var(--text-muted);">
+              <strong>Ethical Medical Notice:</strong> ExactRx is an educational and clinical decision support tool. Pharmacist review and physician consultation must guide all actual patient dispensing decisions.
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ================= RIGHT PANEL ================= -->
+      <aside class="right-panel">
+        <!-- STUDY PLANNER RING -->
+        <div class="widget-card">
+          <div class="widget-title">
+            <span>Study Progress</span>
+            <span style="font-size: 11px; color: var(--cyan);">B.Pharm 7th Sem</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="plan-progress-circle">
+              <div class="plan-progress-inner" id="planner-ring-percent">75%</div>
+            </div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: white;">3 of 4 Tasks Done</div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Weekly Target: Biopharmaceutics</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUICK CALCULATORS SHORTCUTS -->
+        <div class="widget-card">
+          <div class="widget-title">Quick Calculators</div>
+          <div class="quick-tools-grid">
+            <div class="tool-chip" onclick="window.ExactRx.switchView('calc-dose')">
+              🧮 Pediatric Dose
+            </div>
+            <div class="tool-chip" onclick="window.ExactRx.switchView('calc-ivdrip')">
+              💧 IV Drip Rate
+            </div>
+            <div class="tool-chip" onclick="window.ExactRx.switchView('calc-halflife')">
+              ⏱ Half-Life
+            </div>
+            <div class="tool-chip" onclick="window.ExactRx.switchView('calc-units')">
+              ⚖ Units Converter
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT SEARCHES -->
+        <div class="widget-card">
+          <div class="widget-title">Recent Searches</div>
+          <div class="recent-searches-list" id="recent-searches-box">
+            <!-- Populated dynamically via app.js -->
+          </div>
+        </div>
+
+        <!-- CLINICAL AUDIT STATUS -->
+        <div class="widget-card" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2);">
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: #10b981;">
+            <span>🛡</span> Safety Audit Guard Active
+          </div>
+          <p style="font-size: 11.5px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
+            Monograph cross-referencing enabled for FDA Black Box alerts and pregnancy contraindications.
+          </p>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- ================= MOBILE BOTTOM NAVIGATION ================= -->
+    <nav class="mobile-bottom-nav">
+      <a class="mobile-nav-item active" data-view-target="home">
+        <span>🏠</span>
+        <span>Home</span>
+      </a>
+      <a class="mobile-nav-item" data-view-target="search">
+        <span>🔍</span>
+        <span>Search</span>
+      </a>
+      <a class="mobile-nav-item" data-view-target="chat">
+        <span>🤖</span>
+        <span>AI Chat</span>
+      </a>
+      <a class="mobile-nav-item" data-view-target="verify">
+        <span>📷</span>
+        <span>Verify</span>
+      </a>
+      <a class="mobile-nav-item" data-view-target="quiz">
+        <span>📝</span>
+        <span>Quiz</span>
+      </a>
+    </nav>
+
+    <!-- ================= DRUG MONOGRAPH MODAL ================= -->
+    <div class="modal-overlay" id="drug-modal">
+      <div class="modal-dialog">
+        <button class="modal-close-btn" onclick="window.ExactRx.closeDrugModal()">&times;</button>
+        <div id="drug-modal-body">
+          <!-- Populated dynamically via app.js -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- External Script -->
+  <script src="/app.js"></script>
+</body>
+
+</html>
