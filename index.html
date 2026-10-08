@@ -14,13 +14,13 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300f0ff'/><stop offset='50%' stop-color='%233b82f6'/><stop offset='100%' stop-color='%238b5cf6'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><path d='M30 50h40M50 30v40M38 35l24 30M62 35L38 65' stroke='white' stroke-width='8' stroke-linecap='round'/></svg>">
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='gx' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300f0ff'/><stop offset='50%' stop-color='%233b82f6'/><stop offset='100%' stop-color='%23d946ef'/></linearGradient></defs><rect width='100' height='100' rx='26' fill='%23050c18'/><circle cx='50' cy='50' r='42' stroke='url(%23gx)' stroke-width='3' stroke-dasharray='6 4' fill='none'/><ellipse cx='50' cy='50' rx='36' ry='16' transform='rotate(-28 50 50)' stroke='%2300f0ff' stroke-width='2.5' fill='none' opacity='0.75'/><rect x='34' y='38' width='32' height='24' rx='12' transform='rotate(-28 50 50)' fill='url(%23gx)'/><circle cx='50' cy='50' r='4' fill='%23ffffff'/></svg>">
 
-  <!-- Google Fonts: Space Grotesk, Manrope, Plus Jakarta Sans, Inter -->
+  <!-- Google Fonts: Barlow Condensed, Saira Condensed, Bebas Neue, Anton, Space Grotesk, Manrope, Plus Jakarta Sans, Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Saira+Condensed:wght@700;800;900&family=Space+Grotesk:wght@600;700&display=swap"
     rel="stylesheet">
 
   <!-- External Stylesheet -->
@@ -28,22 +28,36 @@
 </head>
 
 <body>
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
   <div class="app-container">
 
     <!-- ================= FIXED LEFT SIDEBAR ================= -->
     <aside class="sidebar" id="app-sidebar">
       <div class="sidebar-header">
         <a href="#" class="brand-wrapper" data-view-target="home">
-          <!-- Distinctive ExactRx Logo SVG -->
-          <div class="brand-logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7 17L17 7M7 7H17V17" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.8" stroke-opacity="0.5"/>
+          <!-- Distinctive ExactRx Orbital Capsule Mark -->
+          <div class="brand-logo" title="ExactRx Platform">
+            <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" stroke="url(#logo-grad-c)" stroke-width="1.8" stroke-dasharray="4 2" opacity="0.6"/>
+              <ellipse cx="20" cy="20" rx="17" ry="7" transform="rotate(-30 20 20)" stroke="#00f0ff" stroke-width="1.6" opacity="0.85"/>
+              <rect x="13" y="15" width="14" height="10" rx="5" transform="rotate(-30 20 20)" fill="url(#logo-grad)" />
+              <circle cx="20" cy="20" r="2.2" fill="#ffffff"/>
+              <defs>
+                <linearGradient id="logo-grad" x1="13" y1="15" x2="27" y2="25" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00f0ff"/>
+                  <stop offset="0.5" stop-color="#3b82f6"/>
+                  <stop offset="1" stop-color="#d946ef"/>
+                </linearGradient>
+                <linearGradient id="logo-grad-c" x1="2" y1="2" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00f0ff"/>
+                  <stop offset="1" stop-color="#8b5cf6"/>
+                </linearGradient>
+              </defs>
             </svg>
           </div>
           <div class="brand-info">
-            <span class="brand-title">ExactRx</span>
-            <span class="brand-subtitle">Medication Safety</span>
+            <span class="brand-title">Exact<span class="brand-title-rx">Rx</span></span>
+            <span class="brand-subtitle">Medication Safety & Learning</span>
           </div>
         </a>
         <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" title="Toggle Sidebar">
@@ -201,31 +215,38 @@
         <!-- ================= VIEW: HOME ================= -->
         <section class="view-container active" id="view-home">
           <!-- HERO HEADER -->
-          <div class="hero-header">
-            <div>
+          <div class="hero-header editorial-hero">
+            <!-- ACCENT SCALING DISC & AMBIENT AURA -->
+            <div class="hero-accent-disc" id="hero-accent-disc"></div>
+            <div class="hero-ambient-aura"></div>
+
+            <div class="hero-content-col">
               <div class="hero-badge">
-                <span>✦</span> AI-Powered Clinical Pharmacology & Safety
+                <span class="badge-pulse-dot"></span>
+                <span>NEXT-GEN CLINICAL PHARMACOLOGY &amp; SAFETY</span>
               </div>
-              <h1 class="hero-title">
-                Medication Safety,<br>
-                <span>Made Understandable</span>
+              <h1 class="hero-title hero-title-scroll" id="hero-editorial-title">
+                MEDICATION SAFETY,<br>
+                <span>MADE UNDERSTANDABLE</span>
               </h1>
               <p class="hero-desc">
-                Search medicines, verify prescriptions with Gemini Vision, check dangerous drug interactions, and master pharmacy coursework — all in one clinical workspace.
+                High-precision drug search, multimodal Gemini Vision prescription verification, CYP450 interaction hazard screening, and clinical pharmacy mastery — designed for practitioners, students, and patients.
               </p>
 
               <!-- HERO SEARCH BOX -->
               <div class="main-search-box">
+                <span class="search-input-icon">🔍</span>
                 <input type="text" class="main-search-input" id="hero-search-input"
                   placeholder="Search any medicine (e.g. Metformin, Paracetamol, Amlodipine, Warfarin)...">
-                <button class="main-search-btn" id="hero-search-btn" title="Search">
-                  🔍
+                <button class="main-search-btn" id="hero-search-btn" title="Search Drug Compendium">
+                  <span>SEARCH</span>
+                  <span class="btn-arrow">&rarr;</span>
                 </button>
               </div>
 
               <!-- POPULAR MEDICINE SEARCH PILLS -->
               <div class="quick-pills">
-                <span style="font-size: 11px; color: var(--text-muted); align-self: center; margin-right: 4px;">Popular:</span>
+                <span class="quick-pill-label">TRENDING DRUGS:</span>
                 <span class="quick-pill" onclick="window.ExactRx.searchSpecific('Paracetamol')">Paracetamol</span>
                 <span class="quick-pill" onclick="window.ExactRx.searchSpecific('Amoxicillin')">Amoxicillin</span>
                 <span class="quick-pill" onclick="window.ExactRx.searchSpecific('Metformin')">Metformin</span>
@@ -235,20 +256,123 @@
               </div>
             </div>
 
-            <!-- 3D FLOATING CAPSULE ARTWORK -->
-            <div class="capsule-art-container">
+            <!-- 3D HOLOGRAPHIC MOLECULAR CAPSULE ARTWORK -->
+            <div class="capsule-art-container" id="hero-capsule-container">
+              <!-- Holographic Orbital Rings -->
+              <div class="holo-orbital-ring ring-outer"></div>
+              <div class="holo-orbital-ring ring-middle"></div>
+              <div class="holo-orbital-ring ring-inner"></div>
+
+              <!-- Futuristic Capsule Core -->
               <div class="floating-capsule">
-                <div class="capsule-ring"></div>
+                <div class="capsule-inner-glow"></div>
+                <div class="capsule-seam"></div>
+                <div class="capsule-rx-emblem">Rx</div>
               </div>
-              <div class="node-chip top-left">🛡 Interaction Guard: Active</div>
-              <div class="node-chip top-right">⚡ Bioavailability: 92%</div>
-              <div class="node-chip bottom-left">💊 Vision Scanning Ready</div>
-              <div class="node-chip bottom-right">🔬 Renal Clearance Checked</div>
+
+              <!-- Holographic Telemetry Cards & Orbital Nodes -->
+              <div class="node-chip top-left">
+                <span class="node-dot green"></span>
+                <span>INTERACTION GUARD: ACTIVE</span>
+              </div>
+              <div class="node-chip top-right">
+                <span class="node-dot cyan"></span>
+                <span>CYP3A4 / 2C9 CLEARED</span>
+              </div>
+              <div class="node-chip bottom-left">
+                <span class="node-dot purple"></span>
+                <span>GEMINI VISION 98.4%</span>
+              </div>
+              <div class="node-chip bottom-right">
+                <span class="node-dot amber"></span>
+                <span>CrCl RENAL AUDIT OK</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EDITORIAL CIRCULAR STAT BADGES -->
+          <div class="editorial-stats-row reveal-on-scroll">
+            <div class="editorial-stat-item" onclick="window.ExactRx.switchView('database')">
+              <div class="editorial-stat-circle">
+                <span class="stat-number">220+</span>
+                <span class="stat-unit">Rx</span>
+              </div>
+              <div class="stat-label">Medicines Covered</div>
+              <div class="stat-sub">Peer-Reviewed Monographs</div>
+            </div>
+
+            <div class="editorial-stat-item" onclick="window.ExactRx.switchView('interactions')">
+              <div class="editorial-stat-circle cyan-ring">
+                <span class="stat-number">26</span>
+                <span class="stat-unit">Pairs</span>
+              </div>
+              <div class="stat-label">Interactions Checked</div>
+              <div class="stat-sub">CYP450 & Bleeding Matrix</div>
+            </div>
+
+            <div class="editorial-stat-item" onclick="window.ExactRx.switchView('calc-dose')">
+              <div class="editorial-stat-circle amber-ring">
+                <span class="stat-number">4</span>
+                <span class="stat-unit">Tools</span>
+              </div>
+              <div class="stat-label">Calculators</div>
+              <div class="stat-sub">Dosing, Kinetics & IV Drip</div>
+            </div>
+
+            <div class="editorial-stat-item" onclick="window.ExactRx.switchView('quiz')">
+              <div class="editorial-stat-circle purple-ring">
+                <span class="stat-number">10</span>
+                <span class="stat-unit">MCQs</span>
+              </div>
+              <div class="stat-label">Quiz Questions</div>
+              <div class="stat-sub">B.Pharm Board Exam Bank</div>
+            </div>
+          </div>
+
+          <!-- EDITORIAL HOW IT WORKS -->
+          <div class="editorial-how-it-works reveal-on-scroll">
+            <div class="section-title-row">
+              <h3 class="section-title editorial-display-title">
+                <span>✦</span> HOW EXACTRX WORKS
+              </h3>
+              <span class="editorial-kicker">3-Step Clinical Protocol</span>
+            </div>
+
+            <div class="how-it-works-grid">
+              <div class="how-step-card" onclick="window.ExactRx.switchView('search')">
+                <div class="how-step-num">01</div>
+                <div class="how-step-badge">SEARCH</div>
+                <h4 class="how-step-title">Query Drugs & Monographs</h4>
+                <p class="how-step-desc">
+                  Instant access to verified mechanisms, therapeutic classes, pediatric dosing formulas, renal clearance thresholds, and patient counseling pearls.
+                </p>
+                <div class="how-step-link">Open Drug Search &rarr;</div>
+              </div>
+
+              <div class="how-step-card" onclick="window.ExactRx.switchView('verify')">
+                <div class="how-step-num">02</div>
+                <div class="how-step-badge">VERIFY</div>
+                <h4 class="how-step-title">Verify Prescriptions with Vision</h4>
+                <p class="how-step-desc">
+                  Upload prescription handwriting, medicine strips, or packaging. Multimodal AI extracts candidates and flags uncertainty reasons for pharmacist confirmation.
+                </p>
+                <div class="how-step-link">Scan Prescription &rarr;</div>
+              </div>
+
+              <div class="how-step-card" onclick="window.ExactRx.switchView('interactions')">
+                <div class="how-step-num">03</div>
+                <div class="how-step-badge">CHECK INTERACTIONS</div>
+                <h4 class="how-step-title">Screen Drug Interactions</h4>
+                <p class="how-step-desc">
+                  Cross-examine multi-drug regimens against the pharmacokinetic CYP450 enzyme matrix and additive toxicity hazards to prevent clinical adverse events.
+                </p>
+                <div class="how-step-link">Analyze Drug Pairs &rarr;</div>
+              </div>
             </div>
           </div>
 
           <!-- QUICK ACTIONS GRID -->
-          <div class="quick-actions-grid">
+          <div class="quick-actions-grid reveal-on-scroll">
             <div class="action-card cyan" onclick="window.ExactRx.switchView('search')">
               <div class="action-icon-circle">🔍</div>
               <div>
@@ -282,20 +406,56 @@
             </div>
           </div>
 
+          <!-- DARK-TO-LIGHT EDITORIAL TRANSITION SHOWCASE -->
+          <div class="editorial-transition-section reveal-on-scroll" id="editorial-light-transition">
+            <div class="transition-inner-card">
+              <div class="transition-header">
+                <span class="transition-tag">CLINICAL INTELLIGENCE</span>
+                <h3 class="transition-headline">EVIDENCE-BASED PHARMACOTHERAPY</h3>
+                <p class="transition-subhead">
+                  Every dosage range, contraindication alert, and interaction advisory in ExactRx is referenced against established pharmaceutical standards and peer-reviewed pharmacology literature.
+                </p>
+              </div>
+
+              <div class="transition-features-strip">
+                <div class="transition-feat-item">
+                  <div class="feat-digit">01</div>
+                  <div class="feat-title">Monograph Accuracy</div>
+                  <div class="feat-text">FDA Black Box warnings & therapeutic indices.</div>
+                </div>
+                <div class="transition-feat-item">
+                  <div class="feat-digit">02</div>
+                  <div class="feat-title">Multimodal Vision</div>
+                  <div class="feat-text">AI prescription extraction with confidence scoring.</div>
+                </div>
+                <div class="transition-feat-item">
+                  <div class="feat-digit">03</div>
+                  <div class="feat-title">CYP450 Matrix</div>
+                  <div class="feat-text">Enzyme-level pharmacokinetic drug screening.</div>
+                </div>
+                <div class="transition-feat-item">
+                  <div class="feat-digit">04</div>
+                  <div class="feat-title">Kinetic Math</div>
+                  <div class="feat-text">Steady-state half-life and infusion flow formulas.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- POPULAR MEDICINES DIRECTORY PREVIEW -->
           <div class="section-title-row">
-            <h3 class="section-title">
-              <span>💊</span> Popular Medicines Directory
+            <h3 class="section-title editorial-display-title">
+              <span>💊</span> POPULAR MEDICINES DIRECTORY
             </h3>
             <a class="section-link" onclick="window.ExactRx.switchView('database')">View Full Database &rarr;</a>
           </div>
 
-          <div class="medicines-cards-grid" id="home-medicines-grid">
+          <div class="medicines-cards-grid reveal-on-scroll" id="home-medicines-grid">
             <!-- Populated dynamically via app.js -->
           </div>
 
           <!-- HOME SPLIT GRID: AI CONSULT PREVIEW + STUDY DECK PREVIEW -->
-          <div class="home-split-grid">
+          <div class="home-split-grid reveal-on-scroll">
             <div class="home-card-box">
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
                 <h4 style="font-family: var(--font-subheading); font-size: 16px; font-weight: 700; color: white;">
@@ -341,27 +501,40 @@
               </button>
             </div>
           </div>
+
+          <!-- EDITORIAL MEDICAL DISCLAIMER -->
+          <div class="editorial-disclaimer-card reveal-on-scroll">
+            <div class="disclaimer-icon">⚖️</div>
+            <div class="disclaimer-content">
+              <h5 class="disclaimer-title">CLINICAL & EDUCATIONAL MEDICAL DISCLAIMER</h5>
+              <p class="disclaimer-text">
+                ExactRx is engineered as an educational reference and clinical decision-support tool for pharmacy students, healthcare professionals, and patients. Information provided is for learning and verification support only and must never substitute for individualized diagnostic or therapeutic judgment by a licensed medical practitioner. In case of acute overdose or life-threatening symptoms, contact local emergency medical services or poison control immediately.
+              </p>
+            </div>
+          </div>
         </section>
 
         <!-- ================= VIEW: SEARCH & DATABASE ================= -->
         <section class="view-container" id="view-search">
           <div class="view-header">
             <h2>Drug Information Database</h2>
-            <p>Access structured pharmaceutical monographs, dosage forms, mechanisms, contraindications, and counseling points.</p>
+            <p>Access 220+ structured pharmaceutical monographs, dosage forms, mechanisms, contraindications, and counseling points.</p>
           </div>
 
           <div style="margin-bottom: 20px;">
             <input type="text" class="main-search-input" id="search-view-input"
-              placeholder="Search by generic name, brand, indication, or mechanism...">
+              placeholder="Search 220+ drugs by generic name, brand, indication, or mechanism...">
           </div>
 
           <div class="medicines-filter-row">
-            <span class="filter-tab active" data-cat="All">All Drugs</span>
+            <span class="filter-tab active" data-cat="All">All Drugs (220+)</span>
             <span class="filter-tab" data-cat="Antibiotics">Antibiotics</span>
             <span class="filter-tab" data-cat="Cardiovascular">Cardiovascular</span>
             <span class="filter-tab" data-cat="Analgesics">Analgesics</span>
             <span class="filter-tab" data-cat="GI">Gastrointestinal</span>
             <span class="filter-tab" data-cat="Endocrine">Endocrine / Diabetes</span>
+            <span class="filter-tab" data-cat="CNS">Neurology / CNS</span>
+            <span class="filter-tab" data-cat="Respiratory">Respiratory</span>
           </div>
 
           <div id="search-results-list">
@@ -481,6 +654,17 @@
                 <h4 style="font-size: 16px; color: var(--text-secondary); margin-top: 12px;">Awaiting Prescription Image</h4>
                 <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 6px;">Upload a file or choose one of the sample presets to run the AI clinical verification analysis.</p>
               </div>
+            </div>
+          </div>
+
+          <!-- VERIFY CLINICAL DISCLAIMER -->
+          <div class="editorial-disclaimer-card" style="margin-top: 20px;">
+            <div class="disclaimer-icon">⚖️</div>
+            <div class="disclaimer-content">
+              <h5 class="disclaimer-title">PRESCRIPTION VERIFICATION CLINICAL DISCLAIMER</h5>
+              <p class="disclaimer-text">
+                AI prescription verification provides rapid extraction and decision support. It does not replace physical inspection by a licensed pharmacist. Always verify NDC barcodes, expiration dates, and physical dosage forms against official USP/BP monographs.
+              </p>
             </div>
           </div>
         </section>
@@ -960,6 +1144,20 @@
             </div>
           </div>
         </section>
+
+        <!-- GLOBAL EDITORIAL FOOTER -->
+        <footer class="app-global-footer">
+          <div class="footer-disclaimer-card">
+            <span style="font-size: 20px;">⚖️</span>
+            <div>
+              <strong>ExactRx Global Medical Disclaimer:</strong> For educational, pharmacy study, and reference purposes only. ExactRx does not provide individualized medical diagnosis or treatment advice. Always consult a licensed physician or pharmacist for clinical treatment decisions.
+            </div>
+          </div>
+          <div class="footer-meta-row">
+            <span>ExactRx &bull; Medication Safety & Pharmacy Learning Platform</span>
+            <span>B.Pharm 7th Semester Clinical Workspace</span>
+          </div>
+        </footer>
 
       </main>
 
